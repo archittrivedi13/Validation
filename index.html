@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>AngularJS Validation with Button/Form Freeze</title>
+		<script src= "lib\angular.min.js"></script>  
+		<script src= "js\controller.js"></script>  
+	</head>
+
+	<body background="img\green.jpg">
+		<h1>Form(Fill Out Correct values in order to proceed ahead):</h1>
+		<form ng-app="myApp" ng-controller="validateCtrl" name="myForm" novalidate>
+			<p>
+				Please Enter Username:<br>
+				<input type="text" name="username" ng-model="username" required>
+					<span style="color:red" ng-show="myForm.username.$dirty && myForm.username.$invalid">
+					<span ng-show="myForm.username.$error.required">Username is required.</span>
+					</span>
+			</p>
+	
+			<p>
+				Please Enter Emailid:<br>
+				<input type="email" name="emailid" ng-model="emailid" required>
+					<span style="color:red" ng-show="myForm.emailid.$dirty && myForm.emailid.$invalid">
+					<span ng-show="myForm.emailid.$error.required">Email is required.</span>
+					<span ng-show="myForm.emailid.$error.email">Invalid email address.</span>
+					</span>
+			</p>
+
+			<p>
+				<input type="submit" value= "Submit" ng-disabled="myForm.username.$dirty && myForm.username.$invalid || myForm.emailid.$dirty && myForm.emailid.$invalid">
+			</p>
+		</form>
+	</body>
+</html>
